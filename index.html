@@ -17,9 +17,28 @@
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
-<body>
+<body class="">
+  <!--===MODAL===-->
+  <div class="modal-background">
+  <div class="modal-delete">
+    <h1>Delete Comment</h1>
+    <p class="text-grayfish-blue">Are you sure you want to delete this
+       comment? This will remove the comment
+       and can't be undone 
+    </p>
+    <div class="modal-buttons">
+      <button class="modal-cancel-button">
+        no, cancel
+      </button>
+      <button class="modal-delete-button">
+        yes, delete
+      </button>
+    </div>
+  </div>
+  </div>
 
-  <main>
+<!--===MAIN===-->
+  <main> 
     <div class="main-container">
       <!--===COMMENT===-->
       <section class="comment">
@@ -41,13 +60,17 @@
             <p class="comment-rate">12</p>
             <img class="minus-icon" src="./images/icon-minus.svg" alt="minus icon">
           </div>
-          <div class="replay-button">
+          <div class="replay-button" data-id="1">
             <img class="replay-icon" src="./images/icon-reply.svg" alt="replay icon">
             <p>replay</p>
           </div>
         </section>
       </section>
       <!--===END-OF-COMMENT===-->
+
+      <div class="replay-container" data-id="1"></div>
+      <div class="comment-replay-container" data-id="1"></div>
+
 
       <!--===COMMENT===-->
       <section class="comment">
@@ -68,13 +91,16 @@
             <p class="comment-rate">5</p>
             <img class="minus-icon" src="./images/icon-minus.svg" alt="minus icon">
           </div>
-          <div class="replay-button">
+          <div class="replay-button" data-id="2">
             <img class="replay-icon" src="./images/icon-reply.svg" alt="replay icon">
             <p>replay</p>
           </div>
         </section>
       </section>
       <!--===END-OF-COMMENT===-->
+
+      <div class="replay-container" data-id="2"></div>
+      <div class="comment-replay-container" data-id="2"></div>
 
       <!--===COMMENT===-->
     <div class="replay-comment-container">
@@ -93,10 +119,10 @@
         <section class="comment-footer">
           <div class="rating">
             <img class="plus-icon" src="./images/icon-plus.svg" alt="plus icon">
-            <p class="comment-rate">2</p>
+            <p class="comment-rate">4</p>
             <img class="minus-icon" src="./images/icon-minus.svg" alt="minus icon">
           </div>
-          <div class="replay-button">
+          <div class="replay-button" data-id="3">
             <img class="replay-icon" src="./images/icon-reply.svg" alt="replay icon">
             <p>replay</p>
           </div>
@@ -104,8 +130,42 @@
       </section>
     </div>
       <!--===END-OF-COMMENT===-->
+
+      <div class="replay-container" data-id="3"></div>
+      <div class="comment-replay-container" data-id="3"></div>
+
+      <!--===COMMENT===-->
+    <div class="replay-comment-container">
+      <section class="reply-comment">
+        <section class="comment-header">
+          <img class="profile-picture" src="./images/avatars/image-juliusomo.png" alt="profile picture">
+          <div class="profile-name my-comment">ramsesmiron</div>
+          <div class="profile-comment-date text-grayfish-blue">1 week ago</div>
+        </section>
+        <section class="comment-content">
+          <p class="text-grayfish-blue"><span class="mentioned-user">@ramsesmiron</span> I couldn't
+            agree more with this. Everything moves so fast and it always seems like everyone
+            knows the newest library/framework. But the fundamentals are what stay constant.</p>
+        </section>
+        <section class="comment-footer">
+          <div class="rating">
+            <img class="plus-icon" src="./images/icon-plus.svg" alt="plus icon">
+            <p class="comment-rate">2</p>
+            <img class="minus-icon" src="./images/icon-minus.svg" alt="minus icon">
+          </div>
+          <div class="delete-and-edit">
+            <img class="delete-icon" src="./images/icon-delete.svg" alt="delete icon">
+            <p class="text-delete">delete</p>
+            <img class="edit-icon" src="./images/icon-edit.svg" alt="edit icon">
+            <p class='text-edit'>edit</p>
+          </div>
+        </section>
+      </section>
+    </div>
+      <!--===END-OF-COMMENT===-->
     </div>
   </main>
+  <!--===FOOTER===-->
   <footer>
     <div class="footer-container">
       <div class="footer-input">

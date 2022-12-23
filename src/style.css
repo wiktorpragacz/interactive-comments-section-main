@@ -24,6 +24,9 @@ body{
     background: var(--light-gray);
 }
 /*===MAIN==*/
+main{
+    
+}
 .main-container{
     padding: 2rem 1rem 0 1rem;
     display: flex;
@@ -117,13 +120,133 @@ body{
 .mentioned-user{
     color: var(--moderate-blue);
 }
+.delete-and-edit{
+    display: flex;
+    align-items: center;
+}
+.delete-and-edit img{
+    width: 1rem;
+    height: 1rem;
+}
+.delete-and-edit p{
+    text-transform: capitalize;
+    cursor: pointer;
+}
+.text-delete{
+    color: var(--soft-red);
+}
+.text-delete{
+    margin: 0 1.5rem 0 .3rem;
+}
+.text-edit{
+    margin-left: .3rem;
+}
+.text-delete:hover{
+    opacity: 0.6;
+}
+.text-edit:hover{
+    opacity: 0.6;
+}
+.my-comment::after{
+    content: 'you';
+    background: var(--moderate-blue);
+    color: var(--white);
+    padding: 5px;
+    font-size: .8rem;
+    border-radius: 5px;
+    position: relative;
+    left: 5px;
+}
+.replay-container{
+    border-left: 2px solid lightgray;
+}
+.comment-replay-container{
+    border-left: 2px solid lightgray;
+    width: 100%;
+    align-self: flex-end;
+}
+main footer{
+    padding: 0 0 0 1rem;
+}
+.replay-center{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+/*===MODAL===*/
+.modal-delete{
+    width: 90%;
+    max-width: 400px;
+    background: var(--white);
+    position: fixed;
+    z-index: 10;
+    padding: 1rem;
+    border-radius: .5rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: none;
+    transition: all 0.5s;
+}
+.modal-background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    top: 0;
+    left: 0;
+    z-index: -10;
+    opacity: 0;
+}
+.modal-delete h1{
+    font-size: 1.2rem;
+    padding: 10px 0;
+}
+.modal-buttons{
+    width: 100%;
+    margin-top: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.modal-buttons button{
+    width: 45%;
+    height: 40px;
+    border: none;
+    border-radius: .5rem;
+    text-transform: uppercase;
+    color: var(--white);
+    font-weight: bolder;
+}
+.modal-buttons button:hover{
+    opacity: .8;
+}
+.modal-delete-button{
+    background-color: var(--soft-red);
+}
+.modal-cancel-button{
+    background: rgb(110, 110, 110);
+}
+.modal-delete.active{
+    display: block;
+}
+.modal-background.active{
+    z-index: 9;
+    opacity: 1;
+}
+body.active{
+    overflow: hidden;
+}
+
+
+
 /*===FOOTER===*/
 footer{
     width: 100%;
     padding: 0 1rem;
     margin-bottom: 2rem;
     max-width: 800px;
-
 }
 .footer-container{
     width: 100%;
@@ -134,7 +257,6 @@ footer{
 footer input{
     width: 100%;
     padding-bottom: 70px;
-    /* height: 100px; */
     border-radius: .5rem;
     border: 1px solid lightgray;
 }
