@@ -2,8 +2,12 @@ const addReplay = () => {
   const replayContainer = document.querySelectorAll(".replay-container");
   const container = document.createElement("footer");
   const replayBtns = document.querySelectorAll(".replay-button");
+  container.classList.toggle('active-replay');
+
   replayBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
+      console.log('click...')
+      container.classList.toggle('active-replay'); /*do usuniecia albo poprawy*/
       commentID = e.currentTarget.dataset.id;
       container.innerHTML = `<div class='footer-container'>
             <div class='footer-input'>
@@ -17,7 +21,7 @@ const addReplay = () => {
       currentContainer.appendChild(container);
       const sendReplayButton = document.querySelector(".send-replay-button");
       // send button click event
-      sendReplayButton.addEventListener("click", (e) => {
+      sendReplayButton.addEventListener("click", () => {
         const input = document.querySelector(".replay-input");
         if (input.value !== "") {
           currentContainer.remove();
@@ -114,8 +118,9 @@ deleteComment();
 // edit comment
 const editComment = (commentContent) => {
   const editBtn = document.querySelectorAll(".text-edit");
-  editBtn.forEach((btn) => {
-    btn.addEventListener("click", () => {
+  editBtn.forEach((btn) => {  
+    btn.addEventListener("click", (e) => {
+      console.log(e.currentTarget)
       commentContent.innerHTML = `<section class="reply-comment">
       <section class="comment-header">
         <img class="profile-picture" src="./images/avatars/image-juliusomo.png" alt="profile picture">
@@ -139,6 +144,7 @@ const editComment = (commentContent) => {
         </div>
       </section>
     </section>`;
+      e.stopImmediatePropagation();
       deleteComment();
 
       const editInput = document.querySelector(".edit-input");
@@ -148,7 +154,7 @@ const editComment = (commentContent) => {
       updateBtn.forEach((btn) => {
         btn.addEventListener("click", () => {
           if (editInput.value !== "") {
-            commentContent.innerHTML = `<section class="reply-comment">
+            commentContent.innerHTML = `<section class="reply-comment da">
         <section class="comment-header">
           <img class="profile-picture" src="./images/avatars/image-juliusomo.png" alt="profile picture">
           <div class="profile-name my-comment">ramsesmiron</div>
@@ -178,6 +184,7 @@ const editComment = (commentContent) => {
             }, 1000);
             editInput.style.borderColor = "red";
           }
+
         });
       });
     });
@@ -185,22 +192,23 @@ const editComment = (commentContent) => {
 };
 // adding comment
 const addComment = () => {
-  const main = document.querySelector('main')
+  const main = document.querySelector("main");
   const sendBtn = document.querySelector(".send-button");
-  
   // commentSection.classList.add('comment');
-  sendBtn.addEventListener('click', () => {
+  sendBtn.addEventListener("click", () => {
     const commentSection = document.createElement("section");
-    const inputValue = document.querySelector('.input-comment').value;
-    commentSection.innerHTML = `<div class="replay-comment-container">
-    <section class="reply-comment">
+    commentSection.classList.add('comment-center');
+    const inputValue = document.querySelector(".input-comment");
+    if (inputValue.value !== "") {
+      commentSection.innerHTML = `<div class="replay-comment-container" style='border-left: none'>
+    <section class="comment">
       <section class="comment-header">
         <img class="profile-picture" src="./images/avatars/image-juliusomo.png" alt="profile picture">
         <div class="profile-name my-comment">ramsesmiron</div>
         <div class="profile-comment-date text-grayfish-blue">Now</div>
       </section>
       <section class="comment-content">
-        <p class="text-grayfish-blue">${inputValue}</p>
+        <p class="text-grayfish-blue">${inputValue.value}</p>
       </section>
       <section class="comment-footer">
         <div class="rating">
@@ -217,11 +225,18 @@ const addComment = () => {
       </section>
     </section>
   </div>`;
-  main.appendChild(commentSection);
-  deleteComment();
-  editComment(commentSection);
-  })
-  
+      main.appendChild(commentSection);
+      inputValue.value='';
+    } else{
+      setTimeout(() => {
+        inputValue.style.borderColor = "lightgray";
+      }, 1000);
+      inputValue.style.borderColor = "red";
+    }
+
+    deleteComment();
+    editComment(commentSection);
+  });
 };
 
 addComment();

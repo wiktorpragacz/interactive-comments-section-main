@@ -24,9 +24,6 @@ body{
     background: var(--light-gray);
 }
 /*===MAIN==*/
-main{
-    
-}
 .main-container{
     padding: 2rem 1rem 0 1rem;
     display: flex;
@@ -44,9 +41,18 @@ main{
     border-radius: .5rem;
     padding: 1rem;
     margin-bottom: 1rem;
+    justify-content: flex-end;
 }
+.replay-comment-container
 .comment{
     width: 100%;
+}
+.comment-center .reply-comment{
+    /* margin-left: 1rem; */
+    width: 100%;
+}
+.comment{
+    border-left: none;
 }
 .comment-header{
     width: 100%;
@@ -87,6 +93,12 @@ main{
     color: var(--moderate-blue);
     font-weight: bolder;
 }
+.comment-container{
+    padding-left: 1rem;
+}
+.edited-comment{
+    padding-left: 1rem;
+}
 .plus-icon,
 .minus-icon{
     width: 10px; 
@@ -98,6 +110,9 @@ main{
     justify-content: space-between;
     width: 70px;
     cursor: pointer;
+}
+.active-replay{
+    display: none;
 }
 .replay-icon{
     width: 1rem;
@@ -112,10 +127,15 @@ main{
     display: flex;
     flex-direction: column;
     border-left: 2px solid lightgray;
+    height: max-content;
 }
 .reply-comment{
     width: 95%;
-    align-self: flex-end;
+    align-self: flex-end;;
+}
+.edited-comment{
+    width: 100%;
+    /* margin-left: 1rem; */
 }
 .mentioned-user{
     color: var(--moderate-blue);
@@ -185,8 +205,15 @@ main footer{
     font-size: 1rem;
     padding-bottom: 70px;
 }
+.edit-comment-section{
+    width: 100%;
+    margin: 0 auto 1rem auto;
+}
 main .send-button{
    height: 40px;
+}
+.comment-center{
+    padding: 0 1rem;
 }
 /*===MODAL===*/
 .modal-delete{
