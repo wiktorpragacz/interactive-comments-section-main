@@ -173,6 +173,21 @@ main footer{
     justify-content: flex-end;
     width: 100%;
 }
+/*===EDIT-COMMENT===*/
+.edit-input{
+    width: 100%;
+    border-radius: .5rem;
+    border: 1px solid lightgray;
+}
+.edit-input[type='text']{
+    padding-left: 1rem;
+    padding-top: 1rem;
+    font-size: 1rem;
+    padding-bottom: 70px;
+}
+main .send-button{
+   height: 40px;
+}
 /*===MODAL===*/
 .modal-delete{
     width: 90%;
@@ -238,9 +253,6 @@ main footer{
 body.active{
     overflow: hidden;
 }
-
-
-
 /*===FOOTER===*/
 footer{
     width: 100%;

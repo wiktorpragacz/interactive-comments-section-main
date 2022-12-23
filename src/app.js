@@ -50,18 +50,19 @@ const addReplay = () => {
                         </div>
                       </section>
                     </section>`;
-          console.log(commentReplayContainer);
           commentReplayContainer[commentID - 1].append(replayComment);
-
+          // deleting comment
           const deleteComment = () => {
-            const deleteBtn = document.querySelectorAll('.text-delete');
-            deleteBtn.forEach(btn => {
-              btn.addEventListener('click', (e) => {
-                  activeModal(btn);
-              })
-            })
+            const deleteBtn = document.querySelectorAll(".text-delete");
+            deleteBtn.forEach((btn) => {
+              btn.addEventListener("click", (e) => {
+                activeModal(btn);
+              });
+            });
           };
           deleteComment();
+          // editing comment
+          editComment(replayComment);
         }
         // if input is empty add red border for 1 second
         else {
@@ -78,34 +79,149 @@ const addReplay = () => {
 addReplay();
 // modal activation
 const activeModal = (btn) => {
-  const modal = document.querySelector('.modal-delete');
-  const modalBackground = document.querySelector('.modal-background');
-  modal.classList.add('active');
-  modalBackground.classList.add('active');
-  document.body.classList.add('active');
+  const modal = document.querySelector(".modal-delete");
+  const modalBackground = document.querySelector(".modal-background");
+  modal.classList.add("active");
+  modalBackground.classList.add("active");
+  document.body.classList.add("active");
   // delete comment or cancel
   // cancel
-  const cancelModalBtn = document.querySelector('.modal-cancel-button');
-  cancelModalBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-    modalBackground.classList.remove('active');
-    document.body.classList.remove('active');
-  })
+  const cancelModalBtn = document.querySelector(".modal-cancel-button");
+  cancelModalBtn.addEventListener("click", () => {
+    modal.classList.remove("active");
+    modalBackground.classList.remove("active");
+    document.body.classList.remove("active");
+  });
   // delete
-  const deleteModalBtn = document.querySelector('.modal-delete-button');
-  deleteModalBtn.addEventListener('click', (e) => {
-    btn.parentElement.parentElement.parentElement.remove(); 
-    modal.classList.remove('active');
-    modalBackground.classList.remove('active');
-    document.body.classList.remove('active');
-  })
+  const deleteModalBtn = document.querySelector(".modal-delete-button");
+  deleteModalBtn.addEventListener("click", (e) => {
+    btn.parentElement.parentElement.parentElement.remove();
+    modal.classList.remove("active");
+    modalBackground.classList.remove("active");
+    document.body.classList.remove("active");
+  });
 };
+// delete comment
 const deleteComment = () => {
-  const deleteBtn = document.querySelectorAll('.text-delete');
-  deleteBtn.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        activeModal(btn);
-    })
-  })
+  const deleteBtn = document.querySelectorAll(".text-delete");
+  deleteBtn.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      activeModal(btn);
+    });
+  });
 };
 deleteComment();
+// edit comment
+const editComment = (commentContent) => {
+  const editBtn = document.querySelectorAll(".text-edit");
+  editBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      commentContent.innerHTML = `<section class="reply-comment">
+      <section class="comment-header">
+        <img class="profile-picture" src="./images/avatars/image-juliusomo.png" alt="profile picture">
+        <div class="profile-name my-comment">ramsesmiron</div>
+        <div class="profile-comment-date text-grayfish-blue">Now</div>
+      </section>
+      <div class="footer-input">
+      <section class="comment-content">
+          <input class="edit-input" type="text" maxlength="100" placeholder="Edit a comment...">
+      </section>
+      <section class="comment-footer">
+        <div class="rating">
+          <img class="plus-icon" src="./images/icon-plus.svg" alt="plus icon">
+          <p class="comment-rate">0</p>
+          <img class="minus-icon" src="./images/icon-minus.svg" alt="minus icon">
+        </div>
+        <div class="delete-and-edit">
+          <img class="delete-icon" src="./images/icon-delete.svg" alt="delete icon">
+          <p class="text-delete">delete</p>
+          <button class="send-button update-button">update</button>
+        </div>
+      </section>
+    </section>`;
+      deleteComment();
+
+      const editInput = document.querySelector(".edit-input");
+
+      // updating comment
+      const updateBtn = document.querySelectorAll(".update-button");
+      updateBtn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (editInput.value !== "") {
+            commentContent.innerHTML = `<section class="reply-comment">
+        <section class="comment-header">
+          <img class="profile-picture" src="./images/avatars/image-juliusomo.png" alt="profile picture">
+          <div class="profile-name my-comment">ramsesmiron</div>
+          <div class="profile-comment-date text-grayfish-blue">now</div>
+        </section>
+        <section class="comment-content">
+          <p class="text-grayfish-blue">${editInput.value}<span class="mentioned-user"></p>
+        </section>
+        <section class="comment-footer">
+          <div class="rating">
+            <img class="plus-icon" src="./images/icon-plus.svg" alt="plus icon">
+            <p class="comment-rate">0</p>
+            <img class="minus-icon" src="./images/icon-minus.svg" alt="minus icon">
+          </div>
+          <div class="delete-and-edit">
+            <img class="delete-icon" src="./images/icon-delete.svg" alt="delete icon">
+            <p class="text-delete">delete</p>
+            <img class="edit-icon" src="./images/icon-edit.svg" alt="edit icon">
+            <p class='text-edit'>edit</p>
+          </div>
+        </section>
+      </section>`;
+            deleteComment();
+          } else {
+            setTimeout(() => {
+              editInput.style.borderColor = "lightgray";
+            }, 1000);
+            editInput.style.borderColor = "red";
+          }
+        });
+      });
+    });
+  });
+};
+// adding comment
+const addComment = () => {
+  const main = document.querySelector('main')
+  const sendBtn = document.querySelector(".send-button");
+  
+  // commentSection.classList.add('comment');
+  sendBtn.addEventListener('click', () => {
+    const commentSection = document.createElement("section");
+    const inputValue = document.querySelector('.input-comment').value;
+    commentSection.innerHTML = `<div class="replay-comment-container">
+    <section class="reply-comment">
+      <section class="comment-header">
+        <img class="profile-picture" src="./images/avatars/image-juliusomo.png" alt="profile picture">
+        <div class="profile-name my-comment">ramsesmiron</div>
+        <div class="profile-comment-date text-grayfish-blue">Now</div>
+      </section>
+      <section class="comment-content">
+        <p class="text-grayfish-blue">${inputValue}</p>
+      </section>
+      <section class="comment-footer">
+        <div class="rating">
+          <img class="plus-icon" src="./images/icon-plus.svg" alt="plus icon">
+          <p class="comment-rate">0</p>
+          <img class="minus-icon" src="./images/icon-minus.svg" alt="minus icon">
+        </div>
+        <div class="delete-and-edit">
+          <img class="delete-icon" src="./images/icon-delete.svg" alt="delete icon">
+          <p class="text-delete">delete</p>
+          <img class="edit-icon" src="./images/icon-edit.svg" alt="edit icon">
+          <p class='text-edit'>edit</p>
+        </div>
+      </section>
+    </section>
+  </div>`;
+  main.appendChild(commentSection);
+  deleteComment();
+  editComment(commentSection);
+  })
+  
+};
+
+addComment();
