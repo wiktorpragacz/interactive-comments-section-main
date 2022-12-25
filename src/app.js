@@ -7,7 +7,7 @@ const addReplay = () => {
   replayBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       console.log('click...')
-      container.classList.toggle('active-replay'); /*do usuniecia albo poprawy*/
+      container.classList.toggle('active-replay'); 
       commentID = e.currentTarget.dataset.id;
       container.innerHTML = `<div class='footer-container'>
             <div class='footer-input'>
