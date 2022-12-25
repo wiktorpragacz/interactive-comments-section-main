@@ -6,7 +6,6 @@ const addReplay = () => {
 
   replayBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      console.log('click...')
       container.classList.toggle('active-replay'); 
       commentID = e.currentTarget.dataset.id;
       container.innerHTML = `<div class='footer-container'>
@@ -120,7 +119,6 @@ const editComment = (commentContent) => {
   const editBtn = document.querySelectorAll(".text-edit");
   editBtn.forEach((btn) => {  
     btn.addEventListener("click", (e) => {
-      console.log(e.currentTarget)
       commentContent.innerHTML = `<section class="reply-comment">
       <section class="comment-header">
         <img class="profile-picture" src="./images/avatars/image-juliusomo.png" alt="profile picture">
