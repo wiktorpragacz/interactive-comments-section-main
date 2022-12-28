@@ -1,12 +1,12 @@
 const addReplay = () => {
-  const replayContainer = document.querySelectorAll(".replay-container");
   const container = document.createElement("footer");
   const replayBtns = document.querySelectorAll(".replay-button");
+  const replayContainer = document.querySelectorAll(".replay-container");
   container.classList.toggle('active-replay');
 
   replayBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      container.classList.toggle('active-replay'); 
+      container.classList.toggle('active-replay');
       commentID = e.currentTarget.dataset.id;
       container.innerHTML = `<div class='footer-container'>
             <div class='footer-input'>
@@ -210,9 +210,9 @@ const addComment = () => {
       </section>
       <section class="comment-footer">
         <div class="rating">
-          <img class="plus-icon" src="./images/icon-plus.svg" alt="plus icon">
+          <img class="plus-icon change-button" src="./images/icon-plus.svg" alt="plus icon">
           <p class="comment-rate">0</p>
-          <img class="minus-icon" src="./images/icon-minus.svg" alt="minus icon">
+          <img class="minus-icon change-button" src="./images/icon-minus.svg" alt="minus icon">
         </div>
         <div class="delete-and-edit">
           <img class="delete-icon" src="./images/icon-delete.svg" alt="delete icon">
@@ -234,7 +234,31 @@ const addComment = () => {
 
     deleteComment();
     editComment(commentSection);
+    changeRating();
   });
 };
 
 addComment();
+
+const changeRating = () => {
+  const changeButtons = document.querySelectorAll('.change-button')
+    changeButtons.forEach(btn => {
+    const commentRate = (btn.classList.contains('plus-icon')) ? btn.nextElementSibling.textContent : btn.previousElementSibling.textContent;
+       
+      btn.addEventListener('click', () => {
+        if(btn.classList.contains('plus-icon')){
+          btn.nextElementSibling.textContent++;
+        }
+        else if(btn.classList.contains('minus-icon')){
+          if(btn.previousElementSibling.textContent == 0){btn.previousElementSibling.textContent}
+          else{btn.previousElementSibling.textContent--} 
+        }
+      }, {once : true})
+    })
+}
+
+// var x = 5;
+// var mojaZmienna = (x > 10) ? 'większe niż 10' : 'mniejsze lub równe 10';
+
+changeRating();
+
